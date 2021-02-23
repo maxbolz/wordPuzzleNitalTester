@@ -23,17 +23,16 @@ public class WordPuzzle {
      */
     public static boolean toBeLabeled(int r, int c, boolean [][] blackBoxes){
 
-
         if(blackBoxes[r][c] == true) {return false;}     //Returns false if the box is a black box.
 
         if(r == 0 || c == 0) {return true;}              //Returns true if the box is the first in a column or row.
 
-        boolean blackToLeft = blackBoxes[r-1][c];
-        boolean blackAbove = blackBoxes[r][c-1];
+        boolean blackToLeft = blackBoxes[r-1][c];        //Boolean variable that determines if there's a black box to the left of the current box.
+        boolean blackAbove = blackBoxes[r][c-1];         //Boolean variable that determines if there's a black box above the current box.
 
         if(blackToLeft || blackAbove) {return true;}     //Returns true if the box has atleast one black box above or to the left.
 
-        return false;     //returns false otherwise.
+        return false;                                    //returns false otherwise.
     }
 
     /* Write the WordPuzzle Constructor.  The constructor should initialize the
@@ -54,9 +53,14 @@ public class WordPuzzle {
      * @param blackBoxes - a 2D array of Boxes
      */
     public WordPuzzle(boolean [][] blackBoxes){
-        /* to be implemented in part b */
 
+        puzzle = new Box[blackBoxes.length-1][blackBoxes[0].length-1];
 
+        for(int currRow = 0; currRow < blackBoxes.length; currRow++) {
+            for(int currCol = 0; currCol < blackBoxes[0].length; currCol++) {
+                puzzle[currRow][currCol] = new Box(blackBoxes[currRow][currCol],1);
+            }
+        }
 
     }
 
@@ -84,14 +88,8 @@ public class WordPuzzle {
                 {false,false,false,false,true,false,false,false,false},
                 {false,false,false,true,true,true,false,false,true}};
 
-        //WordPuzzle wp = new WordPuzzle(blackBoxes);
-        //System.out.println(wp);
+        WordPuzzle wp = new WordPuzzle(blackBoxes);
+        System.out.println(wp);
 
-        for(int y = 0; y < 7; y++) {
-            for (int x = 0; x < 9; x++) {
-                System.out.print(toBeLabeled(y,x,blackBoxes) + " ");
-            }
-            System.out.println("");
         }
     }
-}
