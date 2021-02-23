@@ -53,11 +53,14 @@ public class NitalTester {
      * Postcondition: arr2D is unchanged.
      */
     public static int [] getColumn(int[][] arr2D, int c){
-        /* to be written in part a */
 
-        int[] dummy = {1,2,3};
+        int[] result = new int[arr2D.length];
 
-        return dummy;  //replace this
+        for(int x = 0; x < arr2D.length; x++) {
+            result[x] = arr2D[x][c];
+        }
+
+        return result;  //replace this
     }
 
     /* Write the method isNital below.  You must use getColumn,
@@ -85,11 +88,11 @@ public class NitalTester {
         int[][] n4 = {{1,2,3},{3,1,2},{7,8,9}};
         int[][] n5 = {{1,2},{1,2}};
 
-        System.out.println(isNital(n1));
-        System.out.println(isNital(n2));
-        System.out.println(isNital(n3));
-        System.out.println(isNital(n4));
-        System.out.println(isNital(n5));
+//        System.out.println(isNital(n1));
+//        System.out.println(isNital(n2));
+//        System.out.println(isNital(n3));
+//        System.out.println(isNital(n4));
+//        System.out.println(isNital(n5));
 
 //        int [] arr1 = {1,2,3};
 //        int [] arr2 = {3,1,2};
