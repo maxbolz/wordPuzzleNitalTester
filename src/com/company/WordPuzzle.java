@@ -21,13 +21,19 @@ public class WordPuzzle {
      * is true.
      * Precondition: r and c are valid indexes in blackBoxes
      */
-    public boolean toBeLabeled(int r, int c, boolean [][] blackBoxes){
+    public static boolean toBeLabeled(int r, int c, boolean [][] blackBoxes){
+
 
         if(blackBoxes[r][c] == true) {return false;}     //Returns false if the box is a black box.
 
-        if((r == 0 || blackBoxes[r-1][c] == true) && (c == 0 || blackBoxes[r][c-1] == true)) {return true;}  //Returns false if the box to the left of the box is a white box.
+        if(r == 0 || c == 0) {return true;}              //Returns true if the box is the first in a column or row.
 
-        return false;
+        boolean blackToLeft = blackBoxes[r-1][c];
+        boolean blackAbove = blackBoxes[r][c-1];
+
+        if(blackToLeft || blackAbove) {return true;}     //Returns true if the box has atleast one black box above or to the left.
+
+        return false;     //returns false otherwise.
     }
 
     /* Write the WordPuzzle Constructor.  The constructor should initialize the
@@ -78,7 +84,14 @@ public class WordPuzzle {
                 {false,false,false,false,true,false,false,false,false},
                 {false,false,false,true,true,true,false,false,true}};
 
-        WordPuzzle wp = new WordPuzzle(blackBoxes);
-        System.out.println(wp);
+        //WordPuzzle wp = new WordPuzzle(blackBoxes);
+        //System.out.println(wp);
+
+        for(int y = 0; y < 7; y++) {
+            for (int x = 0; x < 9; x++) {
+                System.out.print(toBeLabeled(y,x,blackBoxes) + " ");
+            }
+            System.out.println("");
+        }
     }
 }
