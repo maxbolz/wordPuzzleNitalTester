@@ -54,14 +54,19 @@ public class WordPuzzle {
      */
     public WordPuzzle(boolean [][] blackBoxes){
 
-        puzzle = new Box[blackBoxes.length-1][blackBoxes[0].length-1];
+        puzzle = new Box[blackBoxes.length][blackBoxes[0].length];
+        int count = 0;
 
         for(int currRow = 0; currRow < blackBoxes.length; currRow++) {
             for(int currCol = 0; currCol < blackBoxes[0].length; currCol++) {
-                puzzle[currRow][currCol] = new Box(blackBoxes[currRow][currCol],1);
+
+                if(toBeLabeled(currRow,currCol,blackBoxes)) {
+                    count++;
+                    puzzle[currRow][currCol] = new Box(blackBoxes[currRow][currCol], count);
+                }
+                else {puzzle[currRow][currCol] = new Box(blackBoxes[currRow][currCol],0);}
             }
         }
-
     }
 
 
