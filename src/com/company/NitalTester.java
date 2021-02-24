@@ -73,12 +73,18 @@ public class NitalTester {
      *      square has at least one row.
      */
     public static boolean isNital(int[][] square){
-        /* to be written in part b */
 
-
-
-
-        return false;   // replace this
+        for(int r = 0; r < square.length-1; r++) {      //Checks if rows contain repeats or are missing values.
+            if(containsRepeats(square[r]) || !hasAllValues(square[r],square[r+1])) {
+                return false;
+            }
+        }
+        for(int c = 0; c < square[0].length-1; c++) {   //Checks if columns contain repeats or are missing values.
+            if(containsRepeats(getColumn(square,c)) || !hasAllValues(getColumn(square,c),getColumn(square,c+1))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args){
@@ -88,11 +94,11 @@ public class NitalTester {
         int[][] n4 = {{1,2,3},{3,1,2},{7,8,9}};
         int[][] n5 = {{1,2},{1,2}};
 
-//        System.out.println(isNital(n1));
-//        System.out.println(isNital(n2));
-//        System.out.println(isNital(n3));
-//        System.out.println(isNital(n4));
-//        System.out.println(isNital(n5));
+        System.out.println(isNital(n1));
+        System.out.println(isNital(n2));
+        System.out.println(isNital(n3));
+        System.out.println(isNital(n4));
+        System.out.println(isNital(n5));
 
 //        int [] arr1 = {1,2,3};
 //        int [] arr2 = {3,1,2};
